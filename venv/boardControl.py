@@ -27,11 +27,16 @@ except pyowm.exceptions.api_call_error.APICallError:
     print('API Call Failed. Proceeding...')
     APIFailure = True
 #A name dict for all degree measurements of wind to meteorological names (NNW) etc
-wind_direction_name_dict = {0:'N', 10:'N', 20:'NNE', 30:'NNE', 40:'NE', 50:'NE', 60:'NE', 70:'ENE', 80:'ENE', 90:'E', 100:'E', 110:'ESE', 120:'ESE', 130:'SE', 140:'SE', 150:'SE', 160:'SSE', 170:'SSE', 180:'S', 190:'S', 200:'SSW', 210:'SSW', 220:'SW', 230:'SW', 240:'SW', 250:'WSW', 260:'WSW', 270:'W', 280:'W', 290:'WNW', 300:'WNW', 310:'NW', 320:'NW', 330:'NW', 340:'NNW', 350:'NNW', 360:'N'}
-#END
+wind_direction_name_dict = {0:'N', 10:'N', 20:'NNE', 30:'NNE', 40:'NE',
+                            50:'NE', 60:'NE', 70:'ENE', 80:'ENE', 90:'E',
+                            100:'E', 110:'ESE', 120:'ESE', 130:'SE', 140:'SE',
+                            150:'SE', 160:'SSE', 170:'SSE', 180:'S', 190:'S',
+                            200:'SSW', 210:'SSW', 220:'SW', 230:'SW', 240:'SW',
+                            250:'WSW', 260:'WSW', 270:'W', 280:'W', 290:'WNW',
+                            300:'WNW', 310:'NW', 320:'NW', 330:'NW', 340:'NNW',
+                            350:'NNW', 360:'N'}
 def get_current_time():
-    curr_time = str(datetime.now().time().strftime('%H:%M'))
-    return curr_time
+    return str(datetime.now().time().strftime('%H:%M'))
 def get_PUBGStats():
     image_get_PUBGStats = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_get_PUBGStats)
