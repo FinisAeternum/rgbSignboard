@@ -37,6 +37,10 @@ wind_direction_name_dict = {0:'N', 10:'N', 20:'NNE', 30:'NNE', 40:'NE',
                             350:'NNW', 360:'N'}
 def get_current_time():
     return str(datetime.now().time().strftime('%H:%M'))
+def get_curr_weather_temp(owm):
+    get_weather = owm.weather_at_id(5146277)
+    curr_weather = get_weather.get_weather()
+    return int(round(curr_weather.get_temperature('fahrenheit')['temp']))
 def get_PUBGStats():
     image_get_PUBGStats = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_get_PUBGStats)
