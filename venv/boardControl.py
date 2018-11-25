@@ -41,6 +41,14 @@ def get_curr_weather_temp(owm):
     get_weather = owm.weather_at_id(5146277)
     curr_weather = get_weather.get_weather()
     return int(round(curr_weather.get_temperature('fahrenheit')['temp']))
+def get_curr_weather_wind_speed(owm):
+    get_weather = owm.weather_at_id(5146277)
+    curr_weather = get_weather.get_weather()
+    return int(round(curr_weather.get_wind()['speed'] * 2.23694))
+def get_curr_weather_wind_speed(owm):
+    get_weather = owm.weather_at_id(5146277)
+    curr_weather = get_weather.get_weather()
+    return int(round(curr_weather.get_wind()['deg'], -1))
 def get_PUBGStats():
     image_get_PUBGStats = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_get_PUBGStats)
