@@ -15,6 +15,7 @@ degree_sign = u'\N{DEGREE SIGN}'
 font7 = ImageFont.truetype(".DejaVuSans-Bold.ttf", 7)
 font8 = ImageFont.truetype(".DejaVuSans-Bold.ttf", 8)
 lol = LeagueOfLegends('RGAPI-b71a8fe2-804a-4d13-aab9-5ca9b9bca956')
+
 try:
     owm = pyowm.OWM('5c50d5ab850e6a5ea0870a4794df3a9e')
     get_weather = owm.weather_at_id(5146277)
@@ -45,25 +46,6 @@ def get_curr_weather_wind_direction(owm):
     get_weather = owm.weather_at_id(5146277)
     curr_weather = get_weather.get_weather()
     return int(round(curr_weather.get_wind()['deg'], -1))
-def get_PUBGStats():
-    image_get_PUBGStats = Image.new("RGB", (64,32))
-    draw = ImageDraw.Draw(image_get_PUBGStats)
-    draw.text((1,1), "How many", font=font7, fill="#FFFFFF")
-    draw.text((1,10), "Chicken Dinners", font=font7, fill="#FFFFFF")
-    draw.text((1,19), "this week?", font=font7, fill="#FFFFFF")
-    matrix.SetImage(image_get_PUBGStats.im.id, 0, 0)
-    chickenDinnerCount = raw_input("")
-    matrix.Clear()
-    return chickenDinnerCount
-def get_PUBGTopTen():
-    image_get_PUBGStats2  = Image.new("RGB", (64,32))
-    draw = ImageDraw.Draw(image_get_PUBGStats2)
-    draw.text((1,1), "How many Top", font=font7, fill="#FFFFFF")
-    draw.text((1,10), "Tens this week?", font=font7, fill="#FFFFFF")
-    matrix.SetImage(image_get_PUBGStats2.im.id, 0, 0)
-    topTenCount = raw_input("")
-    matrix.Clear()
-    return topTenCount
 def get_LeagueStats():
     try:
         summoner = lol.get_summoner_by_name("Finis Aeternum")
