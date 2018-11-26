@@ -77,12 +77,7 @@ def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_overcast_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), get_curr_weather_wind_speed(owm), font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
@@ -112,12 +107,7 @@ def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     image_broken_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_broken_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
@@ -149,12 +139,7 @@ def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
     image_scattered_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_scattered_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
@@ -178,12 +163,7 @@ def displayFew(curr_weather_temp_int, wind_direction_name_dict):
     image_few_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_few_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
@@ -199,12 +179,7 @@ def displayClear(curr_weather_temp_int, wind_direction_name_dict):
     image_clear_sky = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_clear_sky)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     draw.ellipse(((39,1), (51,13)), fill="#FFBB00")
@@ -215,12 +190,7 @@ def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
     image_thunderstorm = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_thunderstorm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
@@ -258,12 +228,7 @@ def displayRain(curr_weather_temp_int, wind_direction_name_dict):
     image_rain = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_rain)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
@@ -303,12 +268,7 @@ def displaySnow(curr_weather_temp_int, wind_direction_name_dict):
     image_snow = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_snow)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SNOWFLAKE 1
@@ -351,12 +311,7 @@ def displayMist(curr_weather_temp_int, wind_direction_name_dict):
     image_mist = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_mist)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #LINE 1
@@ -399,12 +354,7 @@ def displayTornado(curr_weather_temp_int, wind_direction_name_dict):
     image_tornado = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_tornado)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    if curr_weather_temp_int >= 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
-    else:
-        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
+    displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #TORNADO
