@@ -59,12 +59,10 @@ def getRandX():
 def getRandY():
     randy = random.randint(0,20)
     return randy
-def displayOvercast():
-    global wind_direction_name_dict
+def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_overcast_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
-    curr_weather_temp_int = get_curr_weather_temp(owm)
     if curr_weather_temp_int >= 80:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
     elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
@@ -96,10 +94,9 @@ def displayOvercast():
     matrix.SetImage(image_overcast_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayBroken():
+def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     image_broken_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_broken_clouds)
-    curr_weather_temp_int = get_curr_weather_temp(owm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
     if curr_weather_temp_int >= 80:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
@@ -134,11 +131,9 @@ def displayBroken():
     matrix.SetImage(image_broken_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayScattered():
-    global wind_direction_name_dict
+def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
     image_scattered_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_scattered_clouds)
-    curr_weather_temp_int = get_curr_weather_temp(owm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
     if curr_weather_temp_int >= 80:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
@@ -165,11 +160,9 @@ def displayScattered():
     matrix.SetImage(image_scattered_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayFew():
-    global wind_direction_name_dict
+def displayFew(curr_weather_temp_int, wind_direction_name_dict):
     image_few_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_few_clouds)
-    curr_weather_temp_int = get_curr_weather_temp(owm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
     if curr_weather_temp_int >= 80:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
@@ -188,8 +181,7 @@ def displayFew():
     matrix.SetImage(image_few_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayClear():
-    global wind_direction_name_dict
+def displayClear(curr_weather_temp_int, wind_direction_name_dict):
     image_clear_sky = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_clear_sky)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -205,8 +197,7 @@ def displayClear():
     matrix.SetImage(image_clear_sky.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayThunderstorm():
-    global wind_direction_name_dict
+def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
     image_thunderstorm = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_thunderstorm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -249,8 +240,7 @@ def displayThunderstorm():
     matrix.SetImage(image_thunderstorm.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayRain():
-    global wind_direction_name_dict
+def displayRain(curr_weather_temp_int, wind_direction_name_dict):
     image_rain = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_rain)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -295,8 +285,7 @@ def displayRain():
     matrix.SetImage(image_rain.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displaySnow():
-    global wind_direction_name_dict
+def displaySnow(curr_weather_temp_int, wind_direction_name_dict):
     image_snow = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_snow)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -344,8 +333,7 @@ def displaySnow():
     matrix.SetImage(image_snow.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayMist():
-    global wind_direction_name_dict
+def displayMist(curr_weather_temp_int, wind_direction_name_dict):
     image_mist = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_mist)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -393,8 +381,7 @@ def displayMist():
     matrix.SetImage(image_mist.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
-def displayTornado():
-    global wind_direction_name_dict
+def displayTornado(curr_weather_temp_int, wind_direction_name_dict):
     image_tornado = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_tornado)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -424,9 +411,6 @@ def displayTornado():
     time.sleep(30)
     matrix.Clear()
 def main():
-    #PREPARATION: PUBG STATS
-    PUBGChickenDinner = get_PUBGStats()
-    PUBGTopTen = get_PUBGTopTen()
     #PREPARATION: LEAGUE STUFF
     try:
         summonerRank = get_LeagueStats()['rank']
