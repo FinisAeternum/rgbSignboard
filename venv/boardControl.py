@@ -59,6 +59,20 @@ def getRandX():
 def getRandY():
     randy = random.randint(0,20)
     return randy
+def displayTemperature(image, curr_weather_temp_int):
+    """Adds temperature to the image supplied.
+
+    Keyword arguments:
+    image -- the image to add temperature string to
+    curr_weather_temp_int -- the temperature value to add to the image
+    """
+    draw = ImageDraw.Draw(image)
+    if curr_weather_temp_int >= 80:
+        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
+    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
+        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
+    else:
+        draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
 def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_overcast_clouds)
