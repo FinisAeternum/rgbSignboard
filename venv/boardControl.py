@@ -24,7 +24,7 @@ except pyowm.exceptions.api_call_error.APICallError:
     print('API Call Failed. Proceeding...')
     APIFailure = True
 #A name dict for all degree measurements of wind to meteorological names (NNW) etc
-wind_direction_name_dict = {0:'N', 10:'N', 20:'NNE', 30:'NNE', 40:'NE',
+WIND_DIRECTION_NAME_DICT = {0: 'N', 10: 'N', 20: 'NNE', 30: 'NNE', 40: 'NE',
                             50:'NE', 60:'NE', 70:'ENE', 80:'ENE', 90:'E',
                             100:'E', 110:'ESE', 120:'ESE', 130:'SE', 140:'SE',
                             150:'SE', 160:'SSE', 170:'SSE', 180:'S', 190:'S',
