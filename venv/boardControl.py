@@ -19,8 +19,6 @@ try:
     owm = pyowm.OWM('5c50d5ab850e6a5ea0870a4794df3a9e')
     get_weather = owm.weather_at_id(5146277)
     curr_weather = get_weather.get_weather()
-    curr_weather_wind_speed = str(int(round(curr_weather.get_wind()['speed'] * 2.23694))) + "MPH"
-    curr_weather_wind_direction = int(round(curr_weather.get_wind()['deg'], -1))
 except pyowm.exceptions.api_call_error.APICallError:
     print('API Call Failed. Proceeding...')
     APIFailure = True
@@ -43,7 +41,7 @@ def get_curr_weather_wind_speed(owm):
     get_weather = owm.weather_at_id(5146277)
     curr_weather = get_weather.get_weather()
     return int(round(curr_weather.get_wind()['speed'] * 2.23694))
-def get_curr_weather_wind_speed(owm):
+def get_curr_weather_wind_direction(owm):
     get_weather = owm.weather_at_id(5146277)
     curr_weather = get_weather.get_weather()
     return int(round(curr_weather.get_wind()['deg'], -1))
@@ -80,7 +78,7 @@ def getRandY():
     randy = random.randint(0,20)
     return randy
 def displayOvercast():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_overcast_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_overcast_clouds)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -91,8 +89,8 @@ def displayOvercast():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), get_curr_weather_wind_speed(owm), font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
     draw.line((42,3,43,3), fill = "#FFFFFF")
     draw.line((40,4,45,4), fill = "#FFFFFF")
@@ -127,8 +125,8 @@ def displayBroken():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
     draw.ellipse(((41,1), (53,13)), fill = "#FFBB00")
     #CLOUD 1
@@ -155,7 +153,7 @@ def displayBroken():
     time.sleep(30)
     matrix.Clear()
 def displayScattered():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_scattered_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_scattered_clouds)
     curr_weather_temp_int = get_curr_weather_temp(owm)
@@ -166,8 +164,8 @@ def displayScattered():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
     draw.ellipse(((41,1), (53,13)), fill = "#FFBB00")
     #CLOUD 1
@@ -186,7 +184,7 @@ def displayScattered():
     time.sleep(30)
     matrix.Clear()
 def displayFew():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_few_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_few_clouds)
     curr_weather_temp_int = get_curr_weather_temp(owm)
@@ -197,8 +195,8 @@ def displayFew():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SUN
     draw.ellipse(((41,1), (53,13)), fill = "#FFBB00")
     #TINY CLOUD
@@ -209,7 +207,7 @@ def displayFew():
     time.sleep(30)
     matrix.Clear()
 def displayClear():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_clear_sky = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_clear_sky)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -219,14 +217,14 @@ def displayClear():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     draw.ellipse(((39,1), (51,13)), fill="#FFBB00")
     matrix.SetImage(image_clear_sky.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
 def displayThunderstorm():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_thunderstorm = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_thunderstorm)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -236,8 +234,8 @@ def displayThunderstorm():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
     draw.line((42,3,43,3), fill = "#BABABA")
     draw.line((40,4,45,4), fill = "#BABABA")
@@ -270,7 +268,7 @@ def displayThunderstorm():
     time.sleep(30)
     matrix.Clear()
 def displayRain():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_rain = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_rain)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -280,8 +278,8 @@ def displayRain():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #CLOUD 1
     draw.line((42,3,43,3), fill = "#BABABA")
     draw.line((40,4,45,4), fill = "#BABABA")
@@ -316,7 +314,7 @@ def displayRain():
     time.sleep(30)
     matrix.Clear()
 def displaySnow():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_snow = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_snow)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -326,8 +324,8 @@ def displaySnow():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #SNOWFLAKE 1
     draw.line((37,2,39,4), fill = "#FFFFFF")
     draw.line((37,4,39,2), fill = "#FFFFFF")
@@ -365,7 +363,7 @@ def displaySnow():
     time.sleep(30)
     matrix.Clear()
 def displayMist():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_mist = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_mist)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -375,8 +373,8 @@ def displayMist():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #LINE 1
     for x in xrange(0,18):
         lineCO1 = 38 + x
@@ -414,7 +412,7 @@ def displayMist():
     time.sleep(30)
     matrix.Clear()
 def displayTornado():
-    global curr_weather_wind_speed, curr_weather_wind_direction, wind_direction_name_dict
+    global wind_direction_name_dict
     image_tornado = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_tornado)
     draw.text((0,3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -424,8 +422,8 @@ def displayTornado():
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#42C5F4")
-    draw.text((29,15), curr_weather_wind_speed, font=font8, fill="#FFFFFF")
-    draw.text((29,23), wind_direction_name_dict[curr_weather_wind_direction], font=font8, fill="#FFFFFF")
+    draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
+    draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     #TORNADO
     draw.line((40,1,54,1), fill = "#CCCCCC")
     draw.line((41,2,53,2), fill = "#CCCCCC")
