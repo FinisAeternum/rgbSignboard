@@ -161,7 +161,7 @@ def add_one_cloud_weather_image(image):
     draw.line((50, 4, 53, 4), fill="#FFFFFF")
 
 
-def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
+def display_overcast_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_overcast_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -174,7 +174,7 @@ def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
+def display_broken_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_broken_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_broken_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -188,7 +188,7 @@ def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
+def display_scattered_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_scattered_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_scattered_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -202,7 +202,7 @@ def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayFew(curr_weather_temp_int, wind_direction_name_dict):
+def display_few_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_few_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_few_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -216,7 +216,7 @@ def displayFew(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayClear(curr_weather_temp_int, wind_direction_name_dict):
+def display_clear_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_clear_sky = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_clear_sky)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -229,7 +229,7 @@ def displayClear(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
+def display_thunderstorm_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_thunderstorm = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_thunderstorm)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -269,7 +269,7 @@ def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayRain(curr_weather_temp_int, wind_direction_name_dict):
+def display_rain_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_rain = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_rain)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -311,7 +311,7 @@ def displayRain(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displaySnow(curr_weather_temp_int, wind_direction_name_dict):
+def display_snow_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_snow = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_snow)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -356,7 +356,7 @@ def displaySnow(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayMist(curr_weather_temp_int, wind_direction_name_dict):
+def display_mist_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_mist = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_mist)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -364,7 +364,7 @@ def displayMist(curr_weather_temp_int, wind_direction_name_dict):
     draw.text((29, 15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29, 23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     # LINE 1
-    for x in xrange(0, 18):
+    for x in range(0, 18):
         lineCO1 = 38 + x
         lineCO3 = 39 + x
         if lineCO1 % 2 == 0:
@@ -375,7 +375,7 @@ def displayMist(curr_weather_temp_int, wind_direction_name_dict):
             lineCO4 = 5
         draw.line((lineCO1, lineCO2, lineCO3, lineCO4), fill="#CCCCCC")
     # LINE 2
-    for x in xrange(0, 18):
+    for x in range(0, 18):
         lineCO1 = 38 + x
         lineCO3 = 39 + x
         if lineCO1 % 2 == 0:
@@ -386,7 +386,7 @@ def displayMist(curr_weather_temp_int, wind_direction_name_dict):
             lineCO4 = 8
         draw.line((lineCO1, lineCO2, lineCO3, lineCO4), fill="#CCCCCC")
     # LINE 3
-    for x in xrange(0, 18):
+    for x in range(0, 18):
         lineCO1 = 38 + x
         lineCO3 = 39 + x
         if lineCO1 % 2 == 0:
@@ -401,7 +401,7 @@ def displayMist(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def displayTornado(curr_weather_temp_int, wind_direction_name_dict):
+def display_tornado_weather(curr_weather_temp_int, wind_direction_name_dict):
     image_tornado = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_tornado)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -484,23 +484,23 @@ def main():
             matrix.Clear()
             # SECOND STEP: LOL
             if summonerRank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
-                rankColor = '#CD7F32'
+                rank_color = '#CD7F32'
             elif summonerRank in ['Silver 5', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1']:
-                rankColor = '#C0C0C0'
+                rank_color = '#C0C0C0'
             elif summonerRank in ['Gold 5', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1']:
-                rankColor = '#FFD700'
+                rank_color = '#FFD700'
             elif summonerRank in ['Platinum 5', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1']:
-                rankColor = '#3F9896'
+                rank_color = '#3F9896'
             elif summonerRank in ['Diamond 5', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1']:
-                rankColor = '#64BFDE'
+                rank_color = '#64BFDE'
             else:
-                rankColor = "#FFFFFF"
+                rank_color = "#FFFFFF"
             if summoner_LeaguePoints == 0:
-                LPColor = "#FF0000"
+                lp_color = "#FF0000"
             elif summoner_LeaguePoints > 0 and summoner_LeaguePoints <= 75:
-                LPColor = "#FFFFFF"
+                lp_color = "#FFFFFF"
             else:
-                LPColor = "#0DBA3E"
+                lp_color = "#0DBA3E"
             for x in xrange(0, 3):
                 matrix.Clear()
                 image_summonerName = Image.new("RGB", (64, 32))
@@ -509,11 +509,11 @@ def main():
                 matrix.SetImage(image_summonerName.im.id, 0, 0)
                 time.sleep(5)
                 matrix.Clear()
-                image_summonerRank = Image.new("RGB", (64, 32))
-                draw2 = ImageDraw.Draw(image_summonerRank)
-                draw2.text((6, 6), summonerRank, font=font8, fill=rankColor)
-                draw2.text((30, 18), str(summoner_LeaguePoints) + "LP", font=font8, fill=LPColor)
-                matrix.SetImage(image_summonerRank.im.id, 0, 0)
+                image_summoner_rank = Image.new("RGB", (64, 32))
+                draw2 = ImageDraw.Draw(image_summoner_rank)
+                draw2.text((6, 6), summonerRank, font=font8, fill=rank_color)
+                draw2.text((30, 18), str(summoner_LeaguePoints) + "LP", font=font8, fill=lp_color)
+                matrix.SetImage(image_summoner_rank.im.id, 0, 0)
                 time.sleep(5)
                 matrix.Clear()
             # STEP 3: PUBG
@@ -559,30 +559,28 @@ def main():
                     matrix.SetImage(image_PUBGTopTen.im.id, 0, 0)
                     time.sleep(5)
             # STEP 4: WEATHER
-            if APIFailure == True:
-                None
-            else:
+            if not APIFailure:
                 if curr_weather_code == 804:
-                    displayOvercast()
+                    display_overcast_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 803:
-                    displayBroken()
+                    display_broken_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 802:
-                    displayScattered()
+                    display_scattered_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 801:
-                    displayFew()
+                    display_few_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 800:
-                    displayClear()
+                    display_clear_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [200, 201, 202, 210, 211, 212, 221, 230, 231, 232]:
-                    displayThunderstorm()
+                    display_thunderstorm_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [300, 301, 302, 310, 311, 312, 313, 314, 321, 500, 501, 502, 503, 504, 511,
                                            520, 521, 522, 531]:
-                    displayRain()
+                    display_rain_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [600, 601, 602, 611, 612, 615, 616, 620, 621, 622]:
-                    displaySnow()
+                    display_snow_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [701, 711, 721, 731, 741, 751, 761, 762]:
-                    displayMist()
+                    display_mist_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [781, 900]:
-                    displayTornado()
+                    display_tornado_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
                 else:
                     None
                     print('Failed')
