@@ -88,7 +88,7 @@ def displaySmallSun(image):
     draw = ImageDraw.Draw(image)
     draw.ellipse(((41, 1), (53, 13)), fill="#FFBB00")
 
-def displayThreeClouds(image):
+def create_three_clouds_weather_image(image):
     """Adds three clouds to weather display area on signboard.
 
     :param image: image to add three clouds to
@@ -152,7 +152,7 @@ def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     displayTemperature(image_overcast_clouds, curr_weather_temp_int)
     draw.text((29,15), get_curr_weather_wind_speed(owm), font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
-    displayThreeClouds(image_overcast_clouds)
+    create_three_clouds_weather_image(image_overcast_clouds)
     matrix.SetImage(image_overcast_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
@@ -165,7 +165,7 @@ def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     draw.text((29,15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29,23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     displaySmallSun(image_broken_clouds)
-    displayThreeClouds(image_broken_clouds)
+    create_three_clouds_weather_image(image_broken_clouds)
     matrix.SetImage(image_broken_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
