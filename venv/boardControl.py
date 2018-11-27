@@ -79,6 +79,7 @@ def displayTemperature(image, curr_weather_temp_int):
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0,19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
+
 def displaySmallSun(image):
     """Adds a small sun to weather display area on signboard.
 
@@ -86,6 +87,7 @@ def displaySmallSun(image):
     """
     draw = ImageDraw.Draw(image)
     draw.ellipse(((41, 1), (53, 13)), fill="#FFBB00")
+
 def displayThreeClouds(image):
     """Adds three clouds to weather display area on signboard.
 
@@ -142,6 +144,7 @@ def displayOneCloud(image):
     draw.line((51, 2, 52, 2), fill="#FFFFFF")
     draw.line((49, 3, 54, 3), fill="#FFFFFF")
     draw.line((50, 4, 53, 4), fill="#FFFFFF")
+
 def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_overcast_clouds)
@@ -153,6 +156,7 @@ def displayOvercast(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_overcast_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     image_broken_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_broken_clouds)
@@ -165,6 +169,7 @@ def displayBroken(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_broken_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
     image_scattered_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_scattered_clouds)
@@ -177,6 +182,7 @@ def displayScattered(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_scattered_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayFew(curr_weather_temp_int, wind_direction_name_dict):
     image_few_clouds = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_few_clouds)
@@ -189,6 +195,7 @@ def displayFew(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_few_clouds.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayClear(curr_weather_temp_int, wind_direction_name_dict):
     image_clear_sky = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_clear_sky)
@@ -200,6 +207,7 @@ def displayClear(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_clear_sky.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
     image_thunderstorm = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_thunderstorm)
@@ -238,6 +246,7 @@ def displayThunderstorm(curr_weather_temp_int, wind_direction_name_dict):
     matrix.SetImage(image_thunderstorm.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
+
 def displayRain(curr_weather_temp_int, wind_direction_name_dict):
     image_rain = Image.new("RGB", (64,32))
     draw = ImageDraw.Draw(image_rain)
