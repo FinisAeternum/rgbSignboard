@@ -144,13 +144,33 @@ def add_one_cloud_weather_image(image):
     """Adds one cloud to weather display area on signboard.
 
     :param image: image to add cloud to
-    :return:
     """
     draw = ImageDraw.Draw(image)
     # TINY CLOUD
     draw.line((51, 2, 52, 2), fill="#FFFFFF")
     draw.line((49, 3, 54, 3), fill="#FFFFFF")
     draw.line((50, 4, 53, 4), fill="#FFFFFF")
+
+def add_tornado_weather_image(image):
+    """Adds a tornado to weather display area on signboard.
+
+    :param image: image to add tornado to
+    """
+    draw = ImageDraw.Draw(image)
+    # TORNADO
+    draw.line((40, 1, 54, 1), fill="#CCCCCC")
+    draw.line((41, 2, 53, 2), fill="#CCCCCC")
+    draw.line((42, 3, 52, 3), fill="#CCCCCC")
+    draw.line((43, 4, 51, 4), fill="#CCCCCC")
+    draw.line((44, 5, 50, 5), fill="#CCCCCC")
+    draw.line((44, 6, 50, 6), fill="#CCCCCC")
+    draw.line((45, 7, 49, 7), fill="#CCCCCC")
+    draw.line((46, 8, 50, 8), fill="#CCCCCC")
+    draw.line((47, 9, 49, 9), fill="#CCCCCC")
+    draw.line((48, 10, 49, 10), fill="#CCCCCC")
+    draw.line((48, 11, 49, 11), fill="#CCCCCC")
+    draw.line((48, 12, 49, 12), fill="#CCCCCC")
+    draw.point((49, 13), fill="#CCCCCC")
 
 
 def display_overcast_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
@@ -400,20 +420,7 @@ def display_tornado_weather(owm, curr_weather_temp_int, wind_direction_name_dict
     add_temperature_weather_image(image_tornado, curr_weather_temp_int)
     draw.text((29, 15), str(get_curr_weather_wind_speed(owm)) + "MPH", font=font8, fill="#FFFFFF")
     draw.text((29, 23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
-    # TORNADO
-    draw.line((40, 1, 54, 1), fill="#CCCCCC")
-    draw.line((41, 2, 53, 2), fill="#CCCCCC")
-    draw.line((42, 3, 52, 3), fill="#CCCCCC")
-    draw.line((43, 4, 51, 4), fill="#CCCCCC")
-    draw.line((44, 5, 50, 5), fill="#CCCCCC")
-    draw.line((44, 6, 50, 6), fill="#CCCCCC")
-    draw.line((45, 7, 49, 7), fill="#CCCCCC")
-    draw.line((46, 8, 50, 8), fill="#CCCCCC")
-    draw.line((47, 9, 49, 9), fill="#CCCCCC")
-    draw.line((48, 10, 49, 10), fill="#CCCCCC")
-    draw.line((48, 11, 49, 11), fill="#CCCCCC")
-    draw.line((48, 12, 49, 12), fill="#CCCCCC")
-    draw.point((49, 13), fill="#CCCCCC")
+    add_tornado_weather_image(image_tornado)
     matrix.SetImage(image_tornado.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
