@@ -78,7 +78,7 @@ def add_temperature_weather_image(image, curr_weather_temp_int):
     draw = ImageDraw.Draw(image)
     if curr_weather_temp_int >= 80:
         draw.text((0, 19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#EF3B09")
-    elif curr_weather_temp_int >= 32 and curr_weather_temp_int < 80:
+    elif curr_weather_temp_int >= 32:
         draw.text((0, 19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="#0DBA3E")
     else:
         draw.text((0, 19), str(curr_weather_temp_int) + degree_sign, font=font8, fill="42C5F4")
@@ -154,7 +154,7 @@ def add_one_cloud_weather_image(image):
     draw.line((50, 4, 53, 4), fill="#FFFFFF")
 
 
-def display_overcast_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_overcast_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_overcast_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_overcast_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -167,7 +167,7 @@ def display_overcast_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_broken_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_broken_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_broken_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_broken_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -181,7 +181,7 @@ def display_broken_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_scattered_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_scattered_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_scattered_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_scattered_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -195,7 +195,7 @@ def display_scattered_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_few_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_few_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_few_clouds = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_few_clouds)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -209,7 +209,7 @@ def display_few_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_clear_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_clear_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_clear_sky = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_clear_sky)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -222,7 +222,7 @@ def display_clear_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_thunderstorm_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_thunderstorm_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_thunderstorm = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_thunderstorm)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -262,7 +262,7 @@ def display_thunderstorm_weather(curr_weather_temp_int, wind_direction_name_dict
     matrix.Clear()
 
 
-def display_rain_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_rain_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_rain = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_rain)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -304,7 +304,7 @@ def display_rain_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_snow_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_snow_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_snow = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_snow)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -349,7 +349,7 @@ def display_snow_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_mist_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_mist_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_mist = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_mist)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -394,7 +394,7 @@ def display_mist_weather(curr_weather_temp_int, wind_direction_name_dict):
     matrix.Clear()
 
 
-def display_tornado_weather(curr_weather_temp_int, wind_direction_name_dict):
+def display_tornado_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     image_tornado = Image.new("RGB", (64, 32))
     draw = ImageDraw.Draw(image_tornado)
     draw.text((0, 3), get_current_time(), font=font8, fill="#FFFFFF")
@@ -512,26 +512,26 @@ def main():
             # STEP 3: WEATHER
             if not APIFailure:
                 if curr_weather_code == 804:
-                    display_overcast_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_overcast_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 803:
-                    display_broken_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_broken_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 802:
-                    display_scattered_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_scattered_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 801:
-                    display_few_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_few_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 800:
-                    display_clear_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_clear_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [200, 201, 202, 210, 211, 212, 221, 230, 231, 232]:
-                    display_thunderstorm_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_thunderstorm_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [300, 301, 302, 310, 311, 312, 313, 314, 321, 500, 501, 502, 503, 504, 511,
                                            520, 521, 522, 531]:
-                    display_rain_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_rain_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [600, 601, 602, 611, 612, 615, 616, 620, 621, 622]:
-                    display_snow_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_snow_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [701, 711, 721, 731, 741, 751, 761, 762]:
-                    display_mist_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_mist_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code in [781, 900]:
-                    display_tornado_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_tornado_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 else:
                     None
                     print('Failed')
