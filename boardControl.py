@@ -473,7 +473,7 @@ def main():
                 print('API Call Failed. Proceeding')
                 APIFailure = True
             # FIRST STEP: NAME
-            for x in xrange(0, 6):
+            for x in range(0, 6):
                 matrix.Clear()
                 image_name = Image.new("RGB", (64, 32))
                 draw = ImageDraw.Draw(image_name)
@@ -501,7 +501,7 @@ def main():
                 lp_color = "#FFFFFF"
             else:
                 lp_color = "#0DBA3E"
-            for x in xrange(0, 3):
+            for x in range(0, 3):
                 matrix.Clear()
                 image_summonerName = Image.new("RGB", (64, 32))
                 draw = ImageDraw.Draw(image_summonerName)
@@ -516,49 +516,7 @@ def main():
                 matrix.SetImage(image_summoner_rank.im.id, 0, 0)
                 time.sleep(5)
                 matrix.Clear()
-            # STEP 3: PUBG
-            if PUBGChickenDinner == None and PUBGTopTen == None:
-                None
-            elif PUBGChickenDinner != None and PUBGTopTen == None:
-                image_PUBGWins = Image.new("RGB", (64, 32))
-                draw = ImageDraw.Draw(image_PUBGWins)
-                draw.text((1, 1), "Number of", font=font7, fill="#E2B279")
-                draw.text((1, 10), "Chicken Dinners", font=font7, fill="#E2B279")
-                draw.text((1, 19), "this wipe", font=font7, fill="#E2B279")
-                draw.text((50, 18), PUBGChickenDinner, font=ImageFont.truetype(".DejaVuSans-Bold.ttf", 12),
-                          fill="#FFFFFF")
-                matrix.SetImage(image_PUBGWins.im.id, 0, 0)
-                time.sleep(30)
-            elif PUBGChickenDinner == None and PUBGTopTen != None:
-                image_PUBGTopTen = Image.new("RGB", (64, 32))
-                draw2 = ImageDraw.Draw(image_PUBGTopTen)
-                draw2.text((1, 1), "Number of", font=font7, fill="#FFD700")
-                draw2.text((1, 10), "Top Tens", font=font7, fill="#FFD700")
-                draw2.text((1, 19), "this wipe", font=font7, fill="#FFD700")
-                draw2.text((50, 18), PUBGTopTen, font=ImageFont.truetype(".DejaVuSans-Bold.ttf", 12), fill="#FFFFFF")
-                matrix.SetImage(image_PUBGTopTen.im.id, 0, 0)
-                time.sleep(30)
-            else:
-                for x in xrange(0, 3):
-                    image_PUBGWins = Image.new("RGB", (64, 32))
-                    draw = ImageDraw.Draw(image_PUBGWins)
-                    draw.text((1, 1), "Number of", font=font7, fill="#E2B279")
-                    draw.text((1, 10), "Chicken Dinners", font=font7, fill="#E2B279")
-                    draw.text((1, 19), "this wipe", font=font7, fill="#E2B279")
-                    draw.text((50, 18), PUBGChickenDinner, font=ImageFont.truetype(".DejaVuSans-Bold.ttf", 12),
-                              fill="#FFFFFF")
-                    matrix.SetImage(image_PUBGWins.im.id, 0, 0)
-                    time.sleep(5)
-                    image_PUBGTopTen = Image.new("RGB", (64, 32))
-                    draw2 = ImageDraw.Draw(image_PUBGTopTen)
-                    draw2.text((1, 1), "Number of", font=font7, fill="#FFD700")
-                    draw2.text((1, 10), "Top Tens", font=font7, fill="#FFD700")
-                    draw2.text((1, 19), "this wipe", font=font7, fill="#FFD700")
-                    draw2.text((50, 18), PUBGTopTen, font=ImageFont.truetype(".DejaVuSans-Bold.ttf", 12),
-                               fill="#FFFFFF")
-                    matrix.SetImage(image_PUBGTopTen.im.id, 0, 0)
-                    time.sleep(5)
-            # STEP 4: WEATHER
+            # STEP 3: WEATHER
             if not APIFailure:
                 if curr_weather_code == 804:
                     display_overcast_weather(get_curr_weather_temp(owm), wind_direction_name_dict)
