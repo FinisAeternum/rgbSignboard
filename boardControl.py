@@ -418,6 +418,31 @@ def display_tornado_weather(owm, curr_weather_temp_int, wind_direction_name_dict
     time.sleep(30)
     matrix.Clear()
 
+def get_ranked_color(summoner_rank):
+    if summoner_rank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
+        rank_color = '#CD7F32'
+    elif summoner_rank in ['Silver 5', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1']:
+        rank_color = '#C0C0C0'
+    elif summoner_rank in ['Gold 5', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1']:
+        rank_color = '#FFD700'
+    elif summoner_rank in ['Platinum 5', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1']:
+        rank_color = '#3F9896'
+    elif summoner_rank in ['Diamond 5', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1']:
+        rank_color = '#64BFDE'
+    else:
+        rank_color = "#FFFFFF"
+    return rank_color
+
+
+def get_lp_color(summoner_lp):
+    if summoner_lp == 0:
+        lp_color = "#FF0000"
+    elif summoner_lp <= 75:
+        lp_color = "#FFFFFF"
+    else:
+        lp_color = "#0DBA3E"
+    return lp_color
+
 
 def main():
     # PREPARATION: LEAGUE STUFF
@@ -471,24 +496,8 @@ def main():
                 matrix.Clear()
             matrix.Clear()
             # SECOND STEP: LOL
-            if summoner_rank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
-                rank_color = '#CD7F32'
-            elif summoner_rank in ['Silver 5', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1']:
-                rank_color = '#C0C0C0'
-            elif summoner_rank in ['Gold 5', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1']:
-                rank_color = '#FFD700'
-            elif summoner_rank in ['Platinum 5', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1']:
-                rank_color = '#3F9896'
-            elif summoner_rank in ['Diamond 5', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1']:
-                rank_color = '#64BFDE'
-            else:
-                rank_color = "#FFFFFF"
-            if summoner_league_points == 0:
-                lp_color = "#FF0000"
-            elif summoner_league_points <= 75:
-                lp_color = "#FFFFFF"
-            else:
-                lp_color = "#0DBA3E"
+            rank_color = get_ranked_color(summoner_rank)
+            lp_color = get_lp_color(summoner_league_points)
             for x in range(0, 3):
                 matrix.Clear()
                 image_summoner_name = Image.new("RGB", (64, 32))
