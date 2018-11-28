@@ -1,5 +1,4 @@
 #!/usr/bin/python
-from typing import Dict, Any, Union
 
 import time
 import random
@@ -50,7 +49,7 @@ def get_curr_weather_wind_direction(owm):
     return int(round(curr_weather.get_wind()['deg'], -1))
 
 
-def get_LeagueStats():
+def get_league_stats():
     try:
         summoner = lol.get_summoner_by_name("Finis Aeternum")
         print(summoner)
@@ -423,24 +422,24 @@ def display_tornado_weather(owm, curr_weather_temp_int, wind_direction_name_dict
 def main():
     # PREPARATION: LEAGUE STUFF
     try:
-        summonerRank = get_LeagueStats()['rank']
-        summoner_LeaguePoints = get_LeagueStats()['league_points']
+        summoner_rank = get_league_stats()['rank']
+        summoner_league_points = get_league_stats()['league_points']
     except TypeError:
         matrix.Clear()
-        image_LeagueFail2 = Image.new("RGB", (64, 32))
-        draw2 = ImageDraw.Draw(image_LeagueFail2)
+        image_league_fail2 = Image.new("RGB", (64, 32))
+        draw2 = ImageDraw.Draw(image_league_fail2)
         draw2.text((1, 1), "Enter your", font=font7, fill="#FF0000")
         draw2.text((1, 10), "League and", font=font7, fill="#FF0000")
         draw2.text((1, 19), "division:", font=font7, fill="#FF0000")
-        matrix.SetImage(image_LeagueFail2.im.id, 0, 0)
-        summonerRank = input("")
+        matrix.SetImage(image_league_fail2.im.id, 0, 0)
+        summoner_rank = input("")
         matrix.Clear()
-        image_LeagueFail3 = Image.new("RGB", (64, 32))
-        draw3 = ImageDraw.Draw(image_LeagueFail3)
+        image_league_fail3 = Image.new("RGB", (64, 32))
+        draw3 = ImageDraw.Draw(image_league_fail3)
         draw3.text((1, 1), "Enter your", font=font7, fill="#FF0000")
         draw3.text((1, 10), "League Points", font=font7, fill="#FF0000")
-        matrix.SetImage(image_LeagueFail3.im.id, 0, 0)
-        summoner_LeaguePoints = int(input(""))
+        matrix.SetImage(image_league_fail3.im.id, 0, 0)
+        summoner_league_points = int(input(""))
     # PREPARATION: WEATHER STUFF
     try:
         while True:
@@ -472,36 +471,36 @@ def main():
                 matrix.Clear()
             matrix.Clear()
             # SECOND STEP: LOL
-            if summonerRank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
+            if summoner_rank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
                 rank_color = '#CD7F32'
-            elif summonerRank in ['Silver 5', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1']:
+            elif summoner_rank in ['Silver 5', 'Silver 4', 'Silver 3', 'Silver 2', 'Silver 1']:
                 rank_color = '#C0C0C0'
-            elif summonerRank in ['Gold 5', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1']:
+            elif summoner_rank in ['Gold 5', 'Gold 4', 'Gold 3', 'Gold 2', 'Gold 1']:
                 rank_color = '#FFD700'
-            elif summonerRank in ['Platinum 5', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1']:
+            elif summoner_rank in ['Platinum 5', 'Platinum 4', 'Platinum 3', 'Platinum 2', 'Platinum 1']:
                 rank_color = '#3F9896'
-            elif summonerRank in ['Diamond 5', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1']:
+            elif summoner_rank in ['Diamond 5', 'Diamond 4', 'Diamond 3', 'Diamond 2', 'Diamond 1']:
                 rank_color = '#64BFDE'
             else:
                 rank_color = "#FFFFFF"
-            if summoner_LeaguePoints == 0:
+            if summoner_league_points == 0:
                 lp_color = "#FF0000"
-            elif summoner_LeaguePoints > 0 and summoner_LeaguePoints <= 75:
+            elif summoner_league_points <= 75:
                 lp_color = "#FFFFFF"
             else:
                 lp_color = "#0DBA3E"
             for x in range(0, 3):
                 matrix.Clear()
-                image_summonerName = Image.new("RGB", (64, 32))
-                draw = ImageDraw.Draw(image_summonerName)
+                image_summoner_name = Image.new("RGB", (64, 32))
+                draw = ImageDraw.Draw(image_summoner_name)
                 draw.text((1, 12), "Finis Aeter num", font=font7, fill="#FFFFFF")
-                matrix.SetImage(image_summonerName.im.id, 0, 0)
+                matrix.SetImage(image_summoner_name.im.id, 0, 0)
                 time.sleep(5)
                 matrix.Clear()
                 image_summoner_rank = Image.new("RGB", (64, 32))
                 draw2 = ImageDraw.Draw(image_summoner_rank)
-                draw2.text((6, 6), summonerRank, font=font8, fill=rank_color)
-                draw2.text((30, 18), str(summoner_LeaguePoints) + "LP", font=font8, fill=lp_color)
+                draw2.text((6, 6), summoner_rank, font=font8, fill=rank_color)
+                draw2.text((30, 18), str(summoner_league_points) + "LP", font=font8, fill=lp_color)
                 matrix.SetImage(image_summoner_rank.im.id, 0, 0)
                 time.sleep(5)
                 matrix.Clear()
