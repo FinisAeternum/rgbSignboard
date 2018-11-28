@@ -418,6 +418,7 @@ def display_tornado_weather(owm, curr_weather_temp_int, wind_direction_name_dict
     time.sleep(30)
     matrix.Clear()
 
+
 def get_ranked_color(summoner_rank):
     if summoner_rank in ['Bronze 5', 'Bronze 4', 'Bronze 3', 'Bronze 2', 'Bronze 1']:
         rank_color = '#CD7F32'
@@ -473,14 +474,6 @@ def main():
                 get_weather = owm.weather_at_id(5146277)
                 curr_weather = get_weather.get_weather()
                 curr_weather_code = curr_weather.get_weather_code()
-                # A name dict for all degree measurements of wind to meteorological names (NNW) etc
-                wind_direction_name_dict = {0: 'N', 10: 'N', 20: 'NNE', 30: 'NNE', 40: 'NE', 50: 'NE', 60: 'NE',
-                                            70: 'ENE', 80: 'ENE', 90: 'E', 100: 'E', 110: 'ESE', 120: 'ESE', 130: 'SE',
-                                            140: 'SE', 150: 'SE', 160: 'SSE', 170: 'SSE', 180: 'S', 190: 'S',
-                                            200: 'SSW', 210: 'SSW', 220: 'SW', 230: 'SW', 240: 'SW', 250: 'WSW',
-                                            260: 'WSW', 270: 'W', 280: 'W', 290: 'WNW', 300: 'WNW', 310: 'NW',
-                                            320: 'NW', 330: 'NW', 340: 'NNW', 350: 'NNW', 360: 'N'}
-                # END
                 api_failure = False
             except pyowm.exceptions.api_call_error.APICallError:
                 print('API Call Failed. Proceeding')
@@ -516,26 +509,26 @@ def main():
             # STEP 3: WEATHER
             if not api_failure:
                 if curr_weather_code == 804:
-                    display_overcast_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_overcast_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code == 803:
-                    display_broken_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_broken_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code == 802:
-                    display_scattered_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_scattered_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code == 801:
-                    display_few_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_few_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code == 800:
-                    display_clear_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_clear_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code in [200, 201, 202, 210, 211, 212, 221, 230, 231, 232]:
-                    display_thunderstorm_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_thunderstorm_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code in [300, 301, 302, 310, 311, 312, 313, 314, 321, 500, 501, 502, 503, 504, 511,
                                            520, 521, 522, 531]:
-                    display_rain_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_rain_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code in [600, 601, 602, 611, 612, 615, 616, 620, 621, 622]:
-                    display_snow_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_snow_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code in [701, 711, 721, 731, 741, 751, 761, 762]:
-                    display_mist_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_mist_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 elif curr_weather_code in [781, 900]:
-                    display_tornado_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
+                    display_tornado_weather(owm, get_curr_weather_temp(owm), WIND_DIRECTION_NAME_DICT)
                 else:
                     print('Failed')
     except KeyboardInterrupt:
