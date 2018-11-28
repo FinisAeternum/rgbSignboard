@@ -358,37 +358,37 @@ def display_mist_weather(owm, curr_weather_temp_int, wind_direction_name_dict):
     draw.text((29, 23), wind_direction_name_dict[get_curr_weather_wind_direction(owm)], font=font8, fill="#FFFFFF")
     # LINE 1
     for x in range(0, 18):
-        lineCO1 = 38 + x
-        lineCO3 = 39 + x
-        if lineCO1 % 2 == 0:
-            lineCO2 = 5
-            lineCO4 = 4
+        line_co1 = 38 + x
+        line_co3 = 39 + x
+        if line_co1 % 2 == 0:
+            line_co2 = 5
+            line_co4 = 4
         else:
-            lineCO2 = 4
-            lineCO4 = 5
-        draw.line((lineCO1, lineCO2, lineCO3, lineCO4), fill="#CCCCCC")
+            line_co2 = 4
+            line_co4 = 5
+        draw.line((line_co1, line_co2, line_co3, line_co4), fill="#CCCCCC")
     # LINE 2
     for x in range(0, 18):
-        lineCO1 = 38 + x
-        lineCO3 = 39 + x
-        if lineCO1 % 2 == 0:
-            lineCO2 = 8
-            lineCO4 = 7
+        line_co1 = 38 + x
+        line_co3 = 39 + x
+        if line_co1 % 2 == 0:
+            line_co2 = 8
+            line_co4 = 7
         else:
-            lineCO2 = 7
-            lineCO4 = 8
-        draw.line((lineCO1, lineCO2, lineCO3, lineCO4), fill="#CCCCCC")
+            line_co2 = 7
+            line_co4 = 8
+        draw.line((line_co1, line_co2, line_co3, line_co4), fill="#CCCCCC")
     # LINE 3
     for x in range(0, 18):
-        lineCO1 = 38 + x
-        lineCO3 = 39 + x
-        if lineCO1 % 2 == 0:
-            lineCO2 = 11
-            lineCO4 = 10
+        line_co1 = 38 + x
+        line_co3 = 39 + x
+        if line_co1 % 2 == 0:
+            line_co2 = 11
+            line_co4 = 10
         else:
-            lineCO2 = 10
-            lineCO4 = 11
-        draw.line((lineCO1, lineCO2, lineCO3, lineCO4), fill="#CCCCCC")
+            line_co2 = 10
+            line_co4 = 11
+        draw.line((line_co1, line_co2, line_co3, line_co4), fill="#CCCCCC")
     matrix.SetImage(image_mist.im.id, 0, 0)
     time.sleep(30)
     matrix.Clear()
@@ -424,7 +424,6 @@ def main():
     # PREPARATION: LEAGUE STUFF
     try:
         summonerRank = get_LeagueStats()['rank']
-        summonerName = "Finis Aeternum"
         summoner_LeaguePoints = get_LeagueStats()['league_points']
     except TypeError:
         matrix.Clear()
@@ -445,14 +444,11 @@ def main():
     # PREPARATION: WEATHER STUFF
     try:
         while True:
-            APIFailure = False
             try:
                 owm = pyowm.OWM('5c50d5ab850e6a5ea0870a4794df3a9e')
                 get_weather = owm.weather_at_id(5146277)
                 curr_weather = get_weather.get_weather()
                 curr_weather_code = curr_weather.get_weather_code()
-                curr_weather_wind_speed = str(int(round(curr_weather.get_wind()['speed'] * 2.23694))) + "MPH"
-                curr_weather_wind_direction = int(round(curr_weather.get_wind()['deg'], -1))
                 # A name dict for all degree measurements of wind to meteorological names (NNW) etc
                 wind_direction_name_dict = {0: 'N', 10: 'N', 20: 'NNE', 30: 'NNE', 40: 'NE', 50: 'NE', 60: 'NE',
                                             70: 'ENE', 80: 'ENE', 90: 'E', 100: 'E', 110: 'ESE', 120: 'ESE', 130: 'SE',
@@ -461,10 +457,10 @@ def main():
                                             260: 'WSW', 270: 'W', 280: 'W', 290: 'WNW', 300: 'WNW', 310: 'NW',
                                             320: 'NW', 330: 'NW', 340: 'NNW', 350: 'NNW', 360: 'N'}
                 # END
-                APIFailure = False
+                api_failure = False
             except pyowm.exceptions.api_call_error.APICallError:
                 print('API Call Failed. Proceeding')
-                APIFailure = True
+                api_failure = True
             # FIRST STEP: NAME
             for x in range(0, 6):
                 matrix.Clear()
@@ -510,7 +506,7 @@ def main():
                 time.sleep(5)
                 matrix.Clear()
             # STEP 3: WEATHER
-            if not APIFailure:
+            if not api_failure:
                 if curr_weather_code == 804:
                     display_overcast_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 elif curr_weather_code == 803:
@@ -533,7 +529,6 @@ def main():
                 elif curr_weather_code in [781, 900]:
                     display_tornado_weather(owm, get_curr_weather_temp(owm), wind_direction_name_dict)
                 else:
-                    None
                     print('Failed')
     except KeyboardInterrupt:
         print('\nQuitting...')
