@@ -1,4 +1,6 @@
 #!/usr/bin/python
+from typing import Dict, Any, Union
+
 import time
 import random
 import pyowm
@@ -15,21 +17,12 @@ degree_sign = u'\N{DEGREE SIGN}'
 font7 = ImageFont.truetype(".DejaVuSans-Bold.ttf", 7)
 font8 = ImageFont.truetype(".DejaVuSans-Bold.ttf", 8)
 lol = LeagueOfLegends('RGAPI-b71a8fe2-804a-4d13-aab9-5ca9b9bca956')
-
-try:
-    owm = pyowm.OWM('5c50d5ab850e6a5ea0870a4794df3a9e')
-    get_weather_test = owm.weather_at_id(5146277)
-    curr_weather_test = get_weather_test.get_weather()
-except pyowm.exceptions.api_call_error.APICallError:
-    print('API Call Failed. Proceeding...')
-    APIFailure = True
-
 # A name dict for all degree measurements of wind to meteorological names (NNW) etc
 WIND_DIRECTION_NAME_DICT = {0: 'N', 10: 'N', 20: 'NNE', 30: 'NNE', 40: 'NE',
                             50: 'NE', 60: 'NE', 70: 'ENE', 80: 'ENE', 90: 'E',
                             100: 'E', 110: 'ESE', 120: 'ESE', 130: 'SE', 140: 'SE',
-                            150: 'SE', 160: 'SSE', 170: 'SSE', 180: 'S', 190: 'S',
-                            200: 'SSW', 210: 'SSW', 220: 'SW', 230: 'SW', 240: 'SW',
+                            150: 'SE', 160: 'SSE', 170: 'SSE', 180: 'S', 200: 'SSW',
+                            190: 'S', 210: 'SSW', 220: 'SW', 230: 'SW', 240: 'SW',
                             250: 'WSW', 260: 'WSW', 270: 'W', 280: 'W', 290: 'WNW',
                             300: 'WNW', 310: 'NW', 320: 'NW', 330: 'NW', 340: 'NNW',
                             350: 'NNW', 360: 'N'}
